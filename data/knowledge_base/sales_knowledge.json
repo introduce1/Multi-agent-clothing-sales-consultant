@@ -1,0 +1,147 @@
+{
+  "sales_process": {
+    "greeting": {
+      "standard": "您好！欢迎来到我们的服装店，我是您的专属购物助手。请问今天想要购买什么类型的服装呢？",
+      "vip": "尊敬的VIP客户，您好！很高兴为您服务，请问今天有什么特别想要的款式吗？",
+      "returning": "欢迎回来！根据您之前的购买记录，我为您推荐一些新款商品。"
+    },
+    "needs_collection": {
+      "questions": [
+        "请问您是想要男装还是女装？",
+        "您想要什么类型的服装？（如：外套、毛衣、裤子、裙子等）",
+        "有特定的品牌偏好吗？",
+        "大概的价格预算是多少？"
+      ],
+      "optional_questions": [
+        "有特定的颜色偏好吗？",
+        "适合什么场合穿着？",
+        "有特殊的尺码要求吗？"
+      ]
+    },
+    "recommendation_strategy": {
+      "based_on_budget": {
+        "low": "推荐性价比高的基础款",
+        "medium": "推荐品质与价格平衡的商品",
+        "high": "推荐高端品牌和限量款"
+      },
+      "based_on_occasion": {
+        "work": "推荐商务正装系列",
+        "casual": "推荐休闲舒适系列",
+        "formal": "推荐正式礼服系列",
+        "sport": "推荐运动休闲系列"
+      }
+    }
+  },
+  "product_categories": {
+    "womens_wear": {
+      "tops": ["衬衫", "T恤", "毛衣", "针织衫", "背心", "吊带"],
+      "bottoms": ["牛仔裤", "休闲裤", "正装裤", "短裤", "半身裙", "长裙"],
+      "dresses": ["连衣裙", "晚礼服", "休闲裙", "职业装"],
+      "outerwear": ["外套", "大衣", "羽绒服", "风衣", "夹克", "西装外套"],
+      "activewear": ["运动套装", "瑜伽服", "运动内衣", "运动裤"]
+    },
+    "mens_wear": {
+      "tops": ["衬衫", "T恤", "POLO衫", "毛衣", "卫衣", "背心"],
+      "bottoms": ["牛仔裤", "休闲裤", "正装裤", "短裤", "运动裤"],
+      "suits": ["西装套装", "正装衬衫", "领带", "马甲"],
+      "outerwear": ["外套", "大衣", "羽绒服", "夹克", "风衣"],
+      "activewear": ["运动套装", "运动T恤", "运动短裤", "运动外套"]
+    }
+  },
+  "price_ranges": {
+    "budget": {
+      "range": "50-200元",
+      "description": "经济实惠，基础款式",
+      "target": "学生、初入职场"
+    },
+    "mid_range": {
+      "range": "200-800元",
+      "description": "品质与价格平衡",
+      "target": "白领、中产阶级"
+    },
+    "premium": {
+      "range": "800-2000元",
+      "description": "高品质，设计感强",
+      "target": "高收入群体"
+    },
+    "luxury": {
+      "range": "2000元以上",
+      "description": "奢侈品牌，限量款",
+      "target": "高端消费者"
+    }
+  },
+  "sales_techniques": {
+    "upselling": {
+      "strategies": [
+        "推荐更高品质的同类商品",
+        "介绍商品的独特价值",
+        "强调长期使用的性价比",
+        "提供套装优惠"
+      ]
+    },
+    "cross_selling": {
+      "strategies": [
+        "推荐搭配商品",
+        "建议配饰组合",
+        "推荐护理用品",
+        "介绍相关系列商品"
+      ]
+    },
+    "objection_handling": {
+      "price_too_high": [
+        "强调商品价值和品质",
+        "提供分期付款选项",
+        "推荐类似的更实惠选择",
+        "说明优惠活动"
+      ],
+      "size_concerns": [
+        "提供详细尺码指导",
+        "说明退换货政策",
+        "推荐试穿服务",
+        "提供尺码调整建议"
+      ],
+      "quality_doubts": [
+        "详细介绍面料和工艺",
+        "提供品牌背景信息",
+        "展示用户评价",
+        "说明质量保证政策"
+      ]
+    }
+  },
+  "customer_service": {
+    "policies": {
+      "return_policy": "7天无理由退换货，商品需保持原状",
+      "warranty": "质量问题提供免费维修或更换",
+      "shipping": "满199元免费配送，否则收取15元运费",
+      "payment": "支持多种支付方式：微信、支付宝、银行卡"
+    },
+    "common_issues": {
+      "size_exchange": "如果尺码不合适，可在7天内免费更换",
+      "color_difference": "如有色差问题，可申请退换货",
+      "quality_issue": "质量问题我们承担所有费用",
+      "delivery_delay": "如有延误，我们会及时通知并提供补偿"
+    }
+  },
+  "seasonal_promotions": {
+    "spring": {
+      "theme": "春季新品上市",
+      "products": ["春装", "薄外套", "休闲装"],
+      "promotions": ["新品8折", "满300减50"]
+    },
+    "summer": {
+      "theme": "夏日清凉",
+      "products": ["T恤", "短裤", "连衣裙", "防晒衣"],
+      "promotions": ["夏装5折起", "买二送一"]
+    },
+    "autumn": {
+      "theme": "秋季时尚",
+      "products": ["毛衣", "外套", "长裤"],
+      "promotions": ["秋装新品7折", "满500减100"]
+    },
+    "winter": {
+      "theme": "冬日保暖",
+      "products": ["羽绒服", "大衣", "毛衣", "保暖内衣"],
+      "promotions": ["冬装6折", "满1000减200"]
+    }
+  }
+}

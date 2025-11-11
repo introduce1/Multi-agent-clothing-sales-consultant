@@ -1,0 +1,290 @@
+{
+  "order_management": {
+    "order_status": {
+      "pending_payment": {
+        "status_code": "PENDING_PAYMENT",
+        "description": "待付款",
+        "customer_actions": ["完成支付", "取消订单"],
+        "system_actions": ["发送付款提醒", "自动取消超时订单"],
+        "timeout": "30分钟"
+      },
+      "paid": {
+        "status_code": "PAID",
+        "description": "已付款",
+        "customer_actions": ["查看订单详情", "联系客服"],
+        "system_actions": ["通知仓库备货", "生成发货单"],
+        "next_status": "PROCESSING"
+      },
+      "processing": {
+        "status_code": "PROCESSING",
+        "description": "处理中",
+        "customer_actions": ["查看进度", "联系客服"],
+        "system_actions": ["仓库拣货", "质检包装"],
+        "estimated_time": "1-2个工作日"
+      },
+      "shipped": {
+        "status_code": "SHIPPED",
+        "description": "已发货",
+        "customer_actions": ["查看物流", "确认收货"],
+        "system_actions": ["推送物流信息", "跟踪配送状态"],
+        "tracking_available": true
+      },
+      "delivered": {
+        "status_code": "DELIVERED",
+        "description": "已送达",
+        "customer_actions": ["确认收货", "申请售后"],
+        "system_actions": ["自动确认收货", "发送评价邀请"],
+        "auto_confirm_days": 7
+      },
+      "completed": {
+        "status_code": "COMPLETED",
+        "description": "已完成",
+        "customer_actions": ["评价商品", "申请售后"],
+        "system_actions": ["结算佣金", "归档订单"],
+        "final_status": true
+      },
+      "cancelled": {
+        "status_code": "CANCELLED",
+        "description": "已取消",
+        "customer_actions": ["查看取消原因"],
+        "system_actions": ["处理退款", "释放库存"],
+        "refund_processing": true
+      },
+      "refunded": {
+        "status_code": "REFUNDED",
+        "description": "已退款",
+        "customer_actions": ["查看退款详情"],
+        "system_actions": ["完成退款流程"],
+        "final_status": true
+      }
+    },
+    "order_operations": {
+      "create_order": {
+        "required_fields": [
+          "customer_id",
+          "products",
+          "shipping_address",
+          "payment_method"
+        ],
+        "validation_rules": [
+          "库存充足检查",
+          "地址格式验证",
+          "支付方式有效性",
+          "优惠券可用性"
+        ],
+        "process_steps": [
+          "验证商品库存",
+          "计算订单金额",
+          "应用优惠和折扣",
+          "生成订单号",
+          "创建订单记录"
+        ]
+      },
+      "modify_order": {
+        "allowed_modifications": {
+          "pending_payment": ["商品数量", "收货地址", "支付方式"],
+          "paid": ["收货地址", "联系电话"],
+          "processing": ["联系电话"],
+          "shipped": ["联系电话"],
+          "delivered": [],
+          "completed": [],
+          "cancelled": [],
+          "refunded": []
+        },
+        "modification_rules": [
+          "只能在允许的状态下修改",
+          "价格变动需重新支付",
+          "地址修改可能影响运费",
+          "修改记录需保存日志"
+        ]
+      },
+      "cancel_order": {
+        "cancellation_rules": {
+          "pending_payment": {
+            "allowed": true,
+            "refund_required": false,
+            "processing_time": "即时"
+          },
+          "paid": {
+            "allowed": true,
+            "refund_required": true,
+            "processing_time": "1-3个工作日"
+          },
+          "processing": {
+            "allowed": true,
+            "refund_required": true,
+            "processing_time": "3-5个工作日",
+            "additional_fee": "可能产生处理费"
+          },
+          "shipped": {
+            "allowed": false,
+            "alternative": "申请退货退款"
+          }
+        },
+        "cancellation_reasons": [
+          "不想要了",
+          "找到更便宜的",
+          "尺码选错了",
+          "重复下单",
+          "其他原因"
+        ]
+      }
+    },
+    "logistics_management": {
+      "shipping_carriers": [
+        {
+          "name": "顺丰速运",
+          "code": "SF",
+          "tracking_url": "https://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/{tracking_number}",
+          "delivery_time": "1-2天",
+          "coverage": "全国"
+        },
+        {
+          "name": "圆通速递",
+          "code": "YTO",
+          "tracking_url": "https://www.yto.net.cn/index/index/query.html?number={tracking_number}",
+          "delivery_time": "2-3天",
+          "coverage": "全国"
+        },
+        {
+          "name": "中通快递",
+          "code": "ZTO",
+          "tracking_url": "https://www.zto.com/",
+          "delivery_time": "2-3天",
+          "coverage": "全国"
+        },
+        {
+          "name": "韵达速递",
+          "code": "YUNDA",
+          "tracking_url": "https://www.yundaex.com/cn/index.php",
+          "delivery_time": "2-4天",
+          "coverage": "全国"
+        }
+      ],
+      "tracking_status": {
+        "picked_up": "已揽收",
+        "in_transit": "运输中",
+        "out_for_delivery": "派送中",
+        "delivered": "已签收",
+        "failed_delivery": "派送失败",
+        "returned": "已退回"
+      },
+      "delivery_exceptions": {
+        "address_incorrect": {
+          "description": "地址错误",
+          "solution": "联系客户确认正确地址",
+          "action": "重新派送或退回"
+        },
+        "recipient_unavailable": {
+          "description": "收件人不在",
+          "solution": "联系收件人约定时间",
+          "action": "预约再次派送"
+        },
+        "package_damaged": {
+          "description": "包裹破损",
+          "solution": "拍照记录并联系客服",
+          "action": "申请理赔或重发"
+        },
+        "refused_delivery": {
+          "description": "拒收",
+          "solution": "了解拒收原因",
+          "action": "退回并处理退款"
+        }
+      }
+    },
+    "inventory_management": {
+      "stock_levels": {
+        "in_stock": "有库存",
+        "low_stock": "库存不足（<10件）",
+        "out_of_stock": "缺货",
+        "discontinued": "停产"
+      },
+      "stock_operations": {
+        "reserve_stock": "下单时预留库存",
+        "release_stock": "取消订单时释放库存",
+        "update_stock": "发货时扣减库存",
+        "restock_alert": "库存不足时发送补货提醒"
+      },
+      "inventory_rules": [
+        "预售商品需标明发货时间",
+        "库存不足时自动下架",
+        "缺货商品提供到货通知",
+        "库存数据实时同步"
+      ]
+    },
+    "payment_processing": {
+      "payment_status": {
+        "pending": "待支付",
+        "processing": "支付处理中",
+        "success": "支付成功",
+        "failed": "支付失败",
+        "refunded": "已退款",
+        "partial_refund": "部分退款"
+      },
+      "refund_processing": {
+        "full_refund": {
+          "description": "全额退款",
+          "conditions": ["商品质量问题", "发错货", "未发货取消"],
+          "processing_time": "1-7个工作日"
+        },
+        "partial_refund": {
+          "description": "部分退款",
+          "conditions": ["商品轻微瑕疵", "配件缺失", "协商解决"],
+          "processing_time": "1-5个工作日"
+        },
+        "refund_methods": [
+          "原路退回（推荐）",
+          "银行转账",
+          "余额退款",
+          "优惠券补偿"
+        ]
+      }
+    }
+  },
+  "customer_communication": {
+    "notification_templates": {
+      "order_confirmed": {
+        "title": "订单确认",
+        "content": "您的订单{order_number}已确认，我们将尽快为您处理。",
+        "channels": ["短信", "邮件", "APP推送"]
+      },
+      "payment_success": {
+        "title": "支付成功",
+        "content": "您的订单{order_number}支付成功，订单金额{amount}元。",
+        "channels": ["短信", "邮件", "APP推送"]
+      },
+      "shipped": {
+        "title": "订单已发货",
+        "content": "您的订单{order_number}已发货，快递单号：{tracking_number}，请注意查收。",
+        "channels": ["短信", "邮件", "APP推送"]
+      },
+      "delivered": {
+        "title": "订单已送达",
+        "content": "您的订单{order_number}已送达，如有问题请及时联系客服。",
+        "channels": ["短信", "APP推送"]
+      }
+    },
+    "communication_preferences": {
+      "sms": {
+        "description": "短信通知",
+        "use_cases": ["重要状态更新", "配送通知"],
+        "opt_out": "可选择退订"
+      },
+      "email": {
+        "description": "邮件通知",
+        "use_cases": ["订单详情", "发票信息"],
+        "opt_out": "可选择退订"
+      },
+      "app_push": {
+        "description": "APP推送",
+        "use_cases": ["实时状态更新", "促销信息"],
+        "opt_out": "可在设置中关闭"
+      },
+      "wechat": {
+        "description": "微信通知",
+        "use_cases": ["订单状态", "客服消息"],
+        "opt_out": "可取消关注"
+      }
+    }
+  }
+}

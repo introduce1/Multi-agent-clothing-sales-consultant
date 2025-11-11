@@ -1,0 +1,197 @@
+{
+  "service_policies": {
+    "return_exchange": {
+      "policy_name": "退换货政策",
+      "time_limit": "7天无理由退换货",
+      "conditions": [
+        "商品需保持原包装和吊牌完整",
+        "未经穿着和洗涤",
+        "不影响二次销售"
+      ],
+      "exceptions": [
+        "特价商品（5折以下）",
+        "定制商品",
+        "贴身衣物（内衣、泳装等）",
+        "已使用的护理用品"
+      ],
+      "process": [
+        "联系客服申请退换货",
+        "填写退换货申请单",
+        "寄回商品（质量问题免运费）",
+        "收到商品后3-5个工作日处理退款"
+      ],
+      "shipping_cost": {
+        "quality_issue": "商家承担",
+        "personal_reason": "客户承担",
+        "size_exchange": "首次免费"
+      }
+    },
+    "shipping_delivery": {
+      "policy_name": "配送政策",
+      "free_shipping_threshold": 199,
+      "delivery_options": {
+        "standard": {
+          "name": "标准配送",
+          "time": "3-5个工作日",
+          "cost": 15,
+          "free_condition": "订单满199元"
+        },
+        "express": {
+          "name": "快速配送",
+          "time": "1-2个工作日",
+          "cost": 25,
+          "availability": "主要城市"
+        },
+        "next_day": {
+          "name": "次日达",
+          "time": "次日送达",
+          "cost": 35,
+          "availability": "一线城市"
+        },
+        "pickup": {
+          "name": "门店自提",
+          "time": "随时",
+          "cost": 0,
+          "locations": ["北京", "上海", "广州", "深圳"]
+        }
+      },
+      "delivery_areas": {
+        "mainland": "中国大陆地区",
+        "remote_areas": "偏远地区需额外运费",
+        "international": "暂不支持海外配送"
+      }
+    },
+    "payment_methods": {
+      "policy_name": "支付方式",
+      "supported_methods": [
+        {
+          "name": "微信支付",
+          "description": "支持微信扫码和小程序支付",
+          "processing_time": "即时到账"
+        },
+        {
+          "name": "支付宝",
+          "description": "支持支付宝扫码和网页支付",
+          "processing_time": "即时到账"
+        },
+        {
+          "name": "银行卡",
+          "description": "支持各大银行借记卡和信用卡",
+          "processing_time": "1-3个工作日"
+        },
+        {
+          "name": "货到付款",
+          "description": "部分地区支持现金或刷卡",
+          "additional_fee": 5
+        }
+      ],
+      "installment": {
+        "available": true,
+        "minimum_amount": 500,
+        "periods": [3, 6, 12],
+        "fee_rate": "0.6%/月"
+      }
+    },
+    "size_guide": {
+      "policy_name": "尺码指导",
+      "measurement_guide": {
+        "bust": "胸围：沿胸部最丰满处水平测量",
+        "waist": "腰围：沿腰部最细处水平测量",
+        "hip": "臀围：沿臀部最丰满处水平测量",
+        "shoulder": "肩宽：两肩端点之间的直线距离"
+      },
+      "size_selection_tips": [
+        "如果尺寸介于两个码数之间，建议选择较大的尺码",
+        "不同品牌尺码可能有差异，请参考具体商品的尺码表",
+        "弹性面料可以选择相对合身的尺码",
+        "如有疑问，可咨询客服获得专业建议"
+      ],
+      "fit_preferences": {
+        "slim_fit": "修身版型，贴合身材曲线",
+        "regular_fit": "标准版型，舒适宽松",
+        "loose_fit": "宽松版型，休闲舒适",
+        "oversized": "超大版型，时尚潮流"
+      }
+    },
+    "quality_assurance": {
+      "policy_name": "品质保证",
+      "quality_standards": [
+        "所有商品均经过严格质检",
+        "面料符合国家安全标准",
+        "工艺细节精心把控",
+        "包装完整无损"
+      ],
+      "warranty_coverage": {
+        "manufacturing_defects": "制造缺陷免费更换",
+        "material_issues": "面料问题全额退款",
+        "workmanship_problems": "工艺问题免费维修",
+        "color_fading": "非正常褪色免费处理"
+      },
+      "quality_complaint_process": [
+        "拍照记录问题详情",
+        "联系客服说明情况",
+        "提供订单号和商品信息",
+        "客服核实后安排处理方案"
+      ]
+    }
+  },
+  "customer_service_standards": {
+    "response_time": {
+      "online_chat": "30秒内响应",
+      "phone_call": "3声内接听",
+      "email": "2小时内回复",
+      "complaint": "24小时内处理"
+    },
+    "service_attitude": {
+      "principles": [
+        "客户至上，服务第一",
+        "耐心细致，专业热情",
+        "诚信经营，童叟无欺",
+        "持续改进，追求卓越"
+      ],
+      "communication_style": [
+        "使用礼貌用语",
+        "保持耐心和理解",
+        "提供专业建议",
+        "及时跟进处理结果"
+      ]
+    },
+    "escalation_procedures": {
+      "level_1": "一线客服处理常规问题",
+      "level_2": "主管处理复杂问题和投诉",
+      "level_3": "经理处理重大问题和VIP客户",
+      "level_4": "总监处理危机事件和媒体关注"
+    }
+  },
+  "vip_services": {
+    "membership_tiers": {
+      "bronze": {
+        "name": "青铜会员",
+        "requirement": "累计消费满1000元",
+        "benefits": ["95折优惠", "生日礼品", "优先客服"]
+      },
+      "silver": {
+        "name": "白银会员",
+        "requirement": "累计消费满5000元",
+        "benefits": ["9折优惠", "免费配送", "专属客服", "新品预览"]
+      },
+      "gold": {
+        "name": "黄金会员",
+        "requirement": "累计消费满10000元",
+        "benefits": ["85折优惠", "免费退换货", "专属顾问", "定制服务"]
+      },
+      "platinum": {
+        "name": "铂金会员",
+        "requirement": "累计消费满50000元",
+        "benefits": ["8折优惠", "专属设计师", "私人定制", "VIP活动"]
+      }
+    },
+    "exclusive_services": {
+      "personal_stylist": "专属造型师服务",
+      "home_delivery": "上门试穿服务",
+      "custom_tailoring": "个人定制服务",
+      "priority_support": "优先客服支持",
+      "exclusive_events": "VIP专属活动"
+    }
+  }
+}
