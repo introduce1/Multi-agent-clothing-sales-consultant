@@ -68,25 +68,25 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 创建 `.env` 文件并配置以下变量：
 
 ```env
-# 应用配置
+ 应用配置
 APP_NAME=多智能体服装销售顾问
 APP_VERSION=1.0.0
 DEBUG=true
 SECRET_KEY=your-secret-key
 
-# 数据库配置
+数据库配置
 DATABASE_URL=sqlite:///./customer_service.db
-# 或使用PostgreSQL
-# DATABASE_URL=postgresql://user:password@localhost/dbname
+或使用PostgreSQL
+DATABASE_URL=postgresql://user:password@localhost/dbname
 
-# Redis配置
+Redis配置
 REDIS_URL=redis://localhost:6379/0
 
-# AI模型配置
+AI模型配置
 OPENAI_API_KEY=your-openai-api-key
 OPENAI_BASE_URL=https://api.openai.com/v1
 
-# 日志配置
+日志配置
 LOG_LEVEL=INFO
 LOG_FILE=logs/app.log
 ```
