@@ -42,7 +42,7 @@ pip install -r requirements.txt
 2. **配置环境变量**
 ```bash
 cp .env.example .env
-# 编辑 .env 文件，配置数据库连接等信息
+
 ```
 
 3. **初始化数据库**
@@ -53,7 +53,7 @@ python -c "from models.database import init_db; init_db()"
 4. **启动服务**
 ```bash
 python main.py
-# 或使用uvicorn
+或使用uvicorn
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
