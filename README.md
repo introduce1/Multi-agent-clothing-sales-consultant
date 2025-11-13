@@ -98,7 +98,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ```env
 # 应用配置
-APP_NAME=智能客服系统
+APP_NAME=多智能体服装销售顾问
 APP_VERSION=1.0.0
 DEBUG=true
 SECRET_KEY=your-secret-key
@@ -118,40 +118,6 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 # 日志配置
 LOG_LEVEL=INFO
 LOG_FILE=logs/app.log
-```
-
-### 智能体配置
-
-在 `config/settings.py` 中可以配置各个智能体的参数：
-
-```python
-AGENT_CONFIG = {
-    "reception_agent": {
-        "model": "gpt-4o",
-        "temperature": 0.3,
-        "max_tokens": 1000
-    },
-    "sales_agent": {
-        "model": "gpt-4o",
-        "temperature": 0.7,
-        "max_tokens": 1500
-    },
-    "order_agent": {
-        "model": "gpt-4o",
-        "temperature": 0.2,
-        "max_tokens": 1200
-    },
-    "knowledge_agent": {
-        "model": "gpt-4o",
-        "temperature": 0.4,
-        "max_tokens": 2000
-    },
-    "styling_agent": {
-        "model": "gpt-4o",
-        "temperature": 0.8,
-        "max_tokens": 1800
-    }
-}
 ```
 
 ## 📚 API文档
@@ -188,11 +154,6 @@ AGENT_CONFIG = {
 - `GET /api/products/{product_id}` - 获取产品详情
 - `GET /api/products/search` - 搜索产品
 
-详细API文档请访问: http://localhost:8000/docs
-
-详细API文档请访问: http://localhost:8000/docs
-
-
 
 ## 📊 监控和日志
 
@@ -209,21 +170,6 @@ AGENT_CONFIG = {
 - 业务指标统计
 - 告警规则配置
 
-### 健康检查
-访问 `/health` 端点获取系统健康状态：
-```json
-{
-  "status": "healthy",
-  "timestamp": "2024-01-01T12:00:00Z",
-  "version": "1.0.0",
-  "uptime": 3600,
-  "agents": {
-    "customer_service": "active",
-    "sales_agent": "active",
-    "order_agent": "active"
-  }
-}
-```
 
 
 
